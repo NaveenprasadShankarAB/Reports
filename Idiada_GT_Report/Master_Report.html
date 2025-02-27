@@ -1,0 +1,509 @@
+
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Master Report</title>
+        <style>
+            
+            body { font-family: Arial, sans-serif; margin: 20px; }
+            p {
+                text-align: left;
+                color: black;
+                font-size: 15px;
+            
+            }
+             h3 {
+                text-align: center;
+                color: white;
+                font-size: 18px;
+                background-color: #d3d3d3  
+            }
+            nav {
+                background-image: linear-gradient(to top left, midnightblue, mediumslateblue);
+                padding: 10px 0;
+                display: flex;
+                justify-content: center;
+                position: fixed;
+                top: 0;
+                width: 100%;
+                z-index: 1000;
+            }
+            .nav-container {
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                position: relative;
+            }
+            nav a {
+                color: white;
+                padding: 15px 20px;
+                text-decoration: none;
+                font-size: 18px;
+            }
+            
+            .triangle-container {
+               position: absolute;
+                right: 30px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+        
+            .triangle {
+    
+                width: 50px;
+                height: 40px;     
+                background: red radial-gradient(at top,red,orange,magenta, blue);
+                clip-path: polygon(50% 0%, 100% 100%, 0% 100%);
+            }
+            triangle::before {
+                content: "";
+                position: absolute;
+                width: 0;
+                height: 0;
+                border-left: 20px solid transparent;
+                border-right: 20px solid transparent;
+                border-bottom: 40px solid;
+                background: linear-gradient(to bottom, purple, orange);
+                clip-path: polygon(50% 0%, 100% 100%, 0% 100%);
+            }
+        
+            .triangle-text {
+                color: white;
+                font-size: 12px;
+                margin-top: 5px;
+                text-align: center;
+            }
+            .section {
+                display: none;
+                margin-top: 70px;
+            }
+            .section.active {
+                display: block;
+            }
+            .header-container {
+                margin-bottom: 50px; /* Ensures spacing after header */
+            }
+            table.style1 { width: 90%; border-collapse: collapse; margin-bottom: 100px; margin-left: auto; margin-right: auto;}
+            table.style2 { width: 50%; border-collapse: collapse; margin-bottom: 100px; margin-left: auto; margin-right: auto;}
+            thead {position: sticky;top: 0;background-color: #f2f2f2;     }
+            th, td { border: 1px solid #ddd; padding: 8px; text-align: center; }
+            th {  background-color: #f2f2f2;}
+            a { text-decoration: none; color: blue; }
+            a:hover { text-decoration: underline; }
+            .bar-container {
+                display: flex;
+                width: 100%;
+                height: 20px;
+                align-items: center; /* Center bars vertically */
+                border: 0.5px solid black;
+                position: relative;
+            }
+            .bar {
+                height: 100%;
+                display: flex;
+                align-items: center; /* Center text vertically */
+                justify-content: center; /* Center text horizontally */
+                color: white; /* Text color */
+                font-size: 10px;                
+                font-weight: bold; 
+            }
+            .early-bar {
+                background-color: orange;
+            }
+            .late-bar {
+                background-color: red;
+            }
+            .gt-bar {
+                background-color: green; 
+            }
+             .legend-container {
+            display: flex;
+            align-items: center;
+            background-color: #f8f9fa;
+            padding: 10px 15px;
+            border-radius: 5px;
+            width: fit-content;
+            margin: 20px auto;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .legend-item {display: flex;lign-items: center;margin-right: 15px;}
+
+        .legend-box {width: 30px;height: 15px;border-radius: 3px;margin-right: 5px;}
+
+        /* Define colors for each category */
+        .good { background-color: green; }
+        .adequate { background-color: yellowgreen; }
+        .marginal { background-color: orange; }
+        .weak { background-color: brown; }
+        .poor { background-color: red; }
+
+        .legend-text {
+            font-size: 14px;
+            font-weight: bold;
+            color: #333;
+        }
+            .green-bar  {width: 50%;height: 20px;background-color: green;margin: auto;}
+            .yellow-bar {width: 50%;height: 20px;background-color: yellow;margin: auto;}
+            .orange-bar {width: 50%;height: 20px;background-color: orange;margin: auto;}
+            .brown-bar  {width: 50%;height: 20px;background-color: brown;margin: auto;}
+            .red-bar    {width: 50%;height: 20px;background-color: red;margin: auto;}
+            
+            .highlight { background-color: red; }
+        </style>
+    </head>
+    <body>
+        <nav>
+            <div class="nav-container">
+                <a>TI NCAP Summary Report</a>
+                <div class="triangle-container">
+                  <div class="triangle"></div>
+                  <div class="triangle-text">AUTOBRAINS</div>
+                </div>
+            </div>
+        </nav>
+        <div class="header-container">
+            <h1>-</h1>
+        </div>
+        <hr style="border: 1px solid #b8c8d9; margin-top: 20px; margin-bottom: 20px;">
+        <h3>Description</h3>
+        
+        <p>Regulation UN N° 152 and Euro NCAP 2023 based Car to Car, Car to Ped, Car to Cyclist tests were performed with Autobrains TI Camera at IDIADA Applus facility and this report
+        summarizes the results</p>
+        <p></p>
+        <hr style="border: 1px solid #b8c8d9; margin-top: 20px; margin-bottom: 20px;">
+        <h3>Summary</h3>
+        
+         <div class="legend-container">
+        <div class="legend-item">
+            <div class="legend-box good"></div>
+            <span class="legend-text">GOOD(>80%)</span>
+        </div>
+        <div class="legend-item">
+            <div class="legend-box adequate"></div>
+            <span class="legend-text">ADEQUATE(>60%)</span>
+        </div>
+        <div class="legend-item">
+            <div class="legend-box marginal"></div>
+            <span class="legend-text">MARGINAL(>40%)</span>
+        </div>
+        <div class="legend-item">
+            <div class="legend-box weak"></div>
+            <span class="legend-text">WEAK(>20%)</span>
+        </div>
+        <div class="legend-item">
+            <div class="legend-box poor"></div>
+            <span class="legend-text">POOR(<20%)</span>
+        </div>
+    </div>
+        <table class="style2">
+            <thead>
+                <tr>
+                    <th>Scenarios</th>
+                    <td>🚙...🚗</td>
+                    <td>🚴</td>
+                    <td>🚶</td>
+                </tr>
+            </thead>
+            <tr>
+                <td>Approaching a stationary target</td>
+                <td><div class="legend-box adequate"></div></td>
+                <td>-</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>Approaching a moving target</td>
+                <td class="w3-bar-block w3-green"><div class="legend-box adequate"></div></td>
+                <td>-</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>Approaching crossing target</td>
+                <td >-</td>
+                <td ><div class="legend-box good"></div></td>
+                <td ><div class="legend-box weak"></div></td>
+            </tr>
+        </table>
+        <hr style="border: 1px solid #b8c8d9; margin-top: 5px; margin-bottom: 20px;">
+        <h3>Scenarios</h3>
+        <table class="style1">
+            <thead>
+                <tr> 
+                    <th>Scenario</th>
+                    <th>Iterations<br>(out of 5)</th>
+                    <th style="font-size">AEB braking<br>(🟥late,🟧early,🟩valid)</th>
+                    <th>AEB Trigger<br>(out of iterations)</th>
+                    <th>Avg Recall</th>
+                    <th>Avg Precision</th>
+                    <th>Avg Late Braking</th>
+                    <th>Avg Early Braking</th>
+                </tr>
+            </thead>
+    
+            <tr>
+                
+                <td><a href='CBNA_ego_30kph_target_15kph_IDIADA_Report.html' target='_blank'>CBNA_ego_30kph_target_15kph</a></td>
+                <td>1/5</td>
+                <td><div class='bar-container'><div class='bar early-bar' style='width: 0px;'> </div><div class='bar late-bar' style='width: 20px;'>2</div><div class='bar gt-bar' style='width: 110px;'>9</div></div></td>
+                <td class=''>1/1</td>
+                <td>81.82%</td>
+                <td>100.00%</td>
+                <td>2.0</td>
+                <td>0.0</td>
+            </tr>
+            
+            <tr>
+                
+                <td><a href='CCRm_ego30kph_target20kph_IDIADA_Report.html' target='_blank'>CCRm_ego30kph_target20kph</a></td>
+                <td>5/5</td>
+                <td><div class='bar-container'><div class='bar early-bar' style='width: 0px;'> </div><div class='bar late-bar' style='width: 30px;'>3</div><div class='bar gt-bar' style='width: 120px;'>9</div></div><div class='bar-container'><div class='bar early-bar' style='width: 0px;'> </div><div class='bar late-bar' style='width: 20px;'>2</div><div class='bar gt-bar' style='width: 90px;'>7</div></div><div class='bar-container'><div class='bar early-bar' style='width: 0px;'> </div><div class='bar late-bar' style='width: 20px;'>2</div><div class='bar gt-bar' style='width: 100px;'>8</div></div><div class='bar-container'><div class='bar early-bar' style='width: 0px;'> </div><div class='bar late-bar' style='width: 20px;'>2</div><div class='bar gt-bar' style='width: 100px;'>8</div></div><div class='bar-container'><div class='bar early-bar' style='width: 0px;'> </div><div class='bar late-bar' style='width: 10px;'>1</div><div class='bar gt-bar' style='width: 100px;'>9</div></div></td>
+                <td class=''>5/5</td>
+                <td>80.56%</td>
+                <td>100.00%</td>
+                <td>2.0</td>
+                <td>0.0</td>
+            </tr>
+            
+            <tr>
+                
+                <td><a href='CCRm_ego60kph_target20kph_IDIADA_Report.html' target='_blank'>CCRm_ego60kph_target20kph</a></td>
+                <td>4/5</td>
+                <td><div class='bar-container'><div class='bar early-bar' style='width: 0px;'> </div><div class='bar late-bar' style='width: 10px;'>1</div><div class='bar gt-bar' style='width: 110px;'>10</div></div><div class='bar-container'><div class='bar early-bar' style='width: 0px;'> </div><div class='bar late-bar' style='width: 10px;'>1</div><div class='bar gt-bar' style='width: 110px;'>10</div></div><div class='bar-container'><div class='bar early-bar' style='width: 0px;'> </div><div class='bar late-bar' style='width: 20px;'>2</div><div class='bar gt-bar' style='width: 100px;'>8</div></div><div class='bar-container'><div class='bar early-bar' style='width: 0px;'> </div><div class='bar late-bar' style='width: 10px;'>1</div><div class='bar gt-bar' style='width: 130px;'>12</div></div></td>
+                <td class=''>4/4</td>
+                <td>88.53%</td>
+                <td>100.00%</td>
+                <td>1.25</td>
+                <td>0.0</td>
+            </tr>
+            
+            <tr>
+                
+                <td><a href='CCRm_minus50kph_ego30kph_target20kph_IDIADA_Report.html' target='_blank'>CCRm_minus50kph_ego30kph_target20kph</a></td>
+                <td>4/5</td>
+                <td><div class='bar-container'><div class='bar early-bar' style='width: 0px;'> </div><div class='bar late-bar' style='width: 10px;'>1</div><div class='bar gt-bar' style='width: 80px;'>7</div></div><div class='bar-container'><div class='bar early-bar' style='width: 0px;'> </div><div class='bar late-bar' style='width: 20px;'>2</div><div class='bar gt-bar' style='width: 60px;'>4</div></div><div class='bar-container'><div class='bar early-bar' style='width: 0px;'> </div><div class='bar late-bar' style='width: 30px;'>3</div><div class='bar gt-bar' style='width: 120px;'>9</div></div><div class='bar-container'><div class='bar early-bar' style='width: 0px;'> </div><div class='bar late-bar' style='width: 10px;'>1</div><div class='bar gt-bar' style='width: 100px;'>9</div></div></td>
+                <td class=''>4/4</td>
+                <td>79.79%</td>
+                <td>100.00%</td>
+                <td>1.75</td>
+                <td>0.0</td>
+            </tr>
+            
+            <tr>
+                
+                <td><a href='CCRm_minus75_ego40kph_target20kph_IDIADA_Report.html' target='_blank'>CCRm_minus75_ego40kph_target20kph</a></td>
+                <td>5/5</td>
+                <td><div class='bar-container'><div class='bar early-bar' style='width: 0px;'> </div><div class='bar late-bar' style='width: 30px;'>3</div><div class='bar gt-bar' style='width: 110px;'>8</div></div><div class='bar-container'><div class='bar early-bar' style='width: 0px;'> </div><div class='bar late-bar' style='width: 20px;'>2</div><div class='bar gt-bar' style='width: 100px;'>8</div></div><div class='bar-container'><div class='bar early-bar' style='width: 0px;'> </div><div class='bar late-bar' style='width: 10px;'>1</div><div class='bar gt-bar' style='width: 80px;'>7</div></div><div class='bar-container'><div class='bar early-bar' style='width: 0px;'> </div><div class='bar late-bar' style='width: 20px;'>2</div><div class='bar gt-bar' style='width: 80px;'>6</div></div><div class='bar-container'><div class='bar early-bar' style='width: 0px;'> </div><div class='bar late-bar' style='width: 20px;'>2</div><div class='bar gt-bar' style='width: 100px;'>8</div></div></td>
+                <td class=''>5/5</td>
+                <td>79.05%</td>
+                <td>100.00%</td>
+                <td>2.0</td>
+                <td>0.0</td>
+            </tr>
+            
+            <tr>
+                
+                <td><a href='CCRm_plus50kph_ego40kph_target20kph_IDIADA_Report.html' target='_blank'>CCRm_plus50kph_ego40kph_target20kph</a></td>
+                <td>5/5</td>
+                <td><div class='bar-container'><div class='bar early-bar' style='width: 0px;'> </div><div class='bar late-bar' style='width: 40px;'>4</div><div class='bar gt-bar' style='width: 100px;'>6</div></div><div class='bar-container'><div class='bar early-bar' style='width: 0px;'> </div><div class='bar late-bar' style='width: 20px;'>2</div><div class='bar gt-bar' style='width: 90px;'>7</div></div><div class='bar-container'><div class='bar early-bar' style='width: 0px;'> </div><div class='bar late-bar' style='width: 10px;'>1</div><div class='bar gt-bar' style='width: 90px;'>8</div></div><div class='bar-container'><div class='bar early-bar' style='width: 0px;'> </div><div class='bar late-bar' style='width: 10px;'>1</div><div class='bar gt-bar' style='width: 80px;'>7</div></div><div class='bar-container'><div class='bar early-bar' style='width: 0px;'> </div><div class='bar late-bar' style='width: 50px;'>5</div><div class='bar gt-bar' style='width: 100px;'>5</div></div></td>
+                <td class=''>5/5</td>
+                <td>72.83%</td>
+                <td>100.00%</td>
+                <td>2.6</td>
+                <td>0.0</td>
+            </tr>
+            
+            <tr>
+                
+                <td><a href='CCRm_plus75_ego30kph_target20kph_IDIADA_Report.html' target='_blank'>CCRm_plus75_ego30kph_target20kph</a></td>
+                <td>5/5</td>
+                <td><div class='bar-container'><div class='bar early-bar' style='width: 0px;'> </div><div class='bar late-bar' style='width: 30px;'>3</div><div class='bar gt-bar' style='width: 100px;'>7</div></div><div class='bar-container'><div class='bar early-bar' style='width: 0px;'> </div><div class='bar late-bar' style='width: 10px;'>1</div><div class='bar gt-bar' style='width: 70px;'>6</div></div><div class='bar-container'><div class='bar early-bar' style='width: 0px;'> </div><div class='bar late-bar' style='width: 10px;'>1</div><div class='bar gt-bar' style='width: 80px;'>7</div></div><div class='bar-container'><div class='bar early-bar' style='width: 0px;'> </div><div class='bar late-bar' style='width: 20px;'>2</div><div class='bar gt-bar' style='width: 100px;'>8</div></div><div class='bar-container'><div class='bar early-bar' style='width: 0px;'> </div><div class='bar late-bar' style='width: 40px;'>4</div><div class='bar gt-bar' style='width: 90px;'>5</div></div></td>
+                <td class=''>5/5</td>
+                <td>75.75%</td>
+                <td>100.00%</td>
+                <td>2.2</td>
+                <td>0.0</td>
+            </tr>
+            
+            <tr>
+                
+                <td><a href='CCRs_30kph_IDIADA_Report.html' target='_blank'>CCRs_30kph</a></td>
+                <td>3/5</td>
+                <td><div class='bar-container'><div class='bar early-bar' style='width: 0px;'> </div><div class='bar late-bar' style='width: 30px;'>3</div><div class='bar gt-bar' style='width: 100px;'>7</div></div><div class='bar-container'><div class='bar early-bar' style='width: 0px;'> </div><div class='bar late-bar' style='width: 20px;'>2</div><div class='bar gt-bar' style='width: 90px;'>7</div></div><div class='bar-container'><div class='bar early-bar' style='width: 0px;'> </div><div class='bar late-bar' style='width: 20px;'>2</div><div class='bar gt-bar' style='width: 100px;'>8</div></div></td>
+                <td class=''>3/3</td>
+                <td>75.93%</td>
+                <td>100.00%</td>
+                <td>2.33</td>
+                <td>0.0</td>
+            </tr>
+            
+            <tr>
+                
+                <td><a href='CCRs_60kph_IDIADA_Report.html' target='_blank'>CCRs_60kph</a></td>
+                <td>5/5</td>
+                <td><div class='bar-container'><div class='bar early-bar' style='width: 0px;'> </div><div class='bar late-bar' style='width: 0px;'> </div><div class='bar gt-bar' style='width: 100px;'>10</div></div><div class='bar-container'><div class='bar early-bar' style='width: 0px;'> </div><div class='bar late-bar' style='width: 0px;'> </div><div class='bar gt-bar' style='width: 100px;'>10</div></div><div class='bar-container'><div class='bar early-bar' style='width: 0px;'> </div><div class='bar late-bar' style='width: 10px;'>1</div><div class='bar gt-bar' style='width: 170px;'>16</div></div><div class='bar-container'><div class='bar early-bar' style='width: 0px;'> </div><div class='bar late-bar' style='width: 0px;'> </div><div class='bar gt-bar' style='width: 140px;'>14</div></div><div class='bar-container'><div class='bar early-bar' style='width: 10px;'>1</div><div class='bar late-bar' style='width: 0px;'> </div><div class='bar gt-bar' style='width: 150px;'>15</div></div></td>
+                <td class=''>5/5</td>
+                <td>98.82%</td>
+                <td>98.75%</td>
+                <td>0.2</td>
+                <td>0.2</td>
+            </tr>
+            
+            <tr>
+                
+                <td><a href='CCRs_minus50_20kph_IDIADA_Report.html' target='_blank'>CCRs_minus50_20kph</a></td>
+                <td>5/5</td>
+                <td><div class='bar-container'><div class='bar early-bar' style='width: 0px;'> </div><div class='bar late-bar' style='width: 30px;'>3</div><div class='bar gt-bar' style='width: 100px;'>7</div></div><div class='bar-container'><div class='bar early-bar' style='width: 0px;'> </div><div class='bar late-bar' style='width: 30px;'>3</div><div class='bar gt-bar' style='width: 100px;'>7</div></div><div class='bar-container'><div class='bar early-bar' style='width: 0px;'> </div><div class='bar late-bar' style='width: 10px;'>1</div><div class='bar gt-bar' style='width: 140px;'>13</div></div><div class='bar-container'><div class='bar early-bar' style='width: 0px;'> </div><div class='bar late-bar' style='width: 20px;'>2</div><div class='bar gt-bar' style='width: 100px;'>8</div></div><div class='bar-container'><div class='bar early-bar' style='width: 0px;'> </div><div class='bar late-bar' style='width: 30px;'>3</div><div class='bar gt-bar' style='width: 90px;'>6</div></div></td>
+                <td class=''>5/5</td>
+                <td>75.91%</td>
+                <td>100.00%</td>
+                <td>2.4</td>
+                <td>0.0</td>
+            </tr>
+            
+            <tr>
+                
+                <td><a href='CCRs_minus75_10kph_IDIADA_Report.html' target='_blank'>CCRs_minus75_10kph</a></td>
+                <td>5/5</td>
+                <td><div class='bar-container'><div class='bar early-bar' style='width: 0px;'> </div><div class='bar late-bar' style='width: 10px;'>1</div><div class='bar gt-bar' style='width: 90px;'>8</div></div><div class='bar-container'><div class='bar early-bar' style='width: 0px;'> </div><div class='bar late-bar' style='width: 30px;'>3</div><div class='bar gt-bar' style='width: 110px;'>8</div></div><div class='bar-container'><div class='bar early-bar' style='width: 0px;'> </div><div class='bar late-bar' style='width: 20px;'>2</div><div class='bar gt-bar' style='width: 110px;'>9</div></div><div class='bar-container'><div class='bar early-bar' style='width: 0px;'> </div><div class='bar late-bar' style='width: 20px;'>2</div><div class='bar gt-bar' style='width: 110px;'>9</div></div><div class='bar-container'><div class='bar early-bar' style='width: 0px;'> </div><div class='bar late-bar' style='width: 30px;'>3</div><div class='bar gt-bar' style='width: 140px;'>9</div></div></td>
+                <td class=''>5/5</td>
+                <td>77.91%</td>
+                <td>100.00%</td>
+                <td>2.2</td>
+                <td>0.0</td>
+            </tr>
+            
+            <tr>
+                
+                <td><a href='CCRs_plus50_10kph_IDIADA_Report.html' target='_blank'>CCRs_plus50_10kph</a></td>
+                <td>4/5</td>
+                <td><div class='bar-container'><div class='bar early-bar' style='width: 0px;'> </div><div class='bar late-bar' style='width: 20px;'>2</div><div class='bar gt-bar' style='width: 120px;'>10</div></div><div class='bar-container'><div class='bar early-bar' style='width: 0px;'> </div><div class='bar late-bar' style='width: 40px;'>4</div><div class='bar gt-bar' style='width: 120px;'>8</div></div><div class='bar-container'><div class='bar early-bar' style='width: 0px;'> </div><div class='bar late-bar' style='width: 30px;'>3</div><div class='bar gt-bar' style='width: 110px;'>8</div></div><div class='bar-container'><div class='bar early-bar' style='width: 0px;'> </div><div class='bar late-bar' style='width: 20px;'>2</div><div class='bar gt-bar' style='width: 110px;'>9</div></div></td>
+                <td class=''>4/4</td>
+                <td>76.14%</td>
+                <td>100.00%</td>
+                <td>2.75</td>
+                <td>0.0</td>
+            </tr>
+            
+            <tr>
+                
+                <td><a href='CCRs_plus75_20kph_IDIADA_Report.html' target='_blank'>CCRs_plus75_20kph</a></td>
+                <td>5/5</td>
+                <td><div class='bar-container'><div class='bar early-bar' style='width: 0px;'> </div><div class='bar late-bar' style='width: 50px;'>5</div><div class='bar gt-bar' style='width: 120px;'>7</div></div><div class='bar-container'><div class='bar early-bar' style='width: 0px;'> </div><div class='bar late-bar' style='width: 20px;'>2</div><div class='bar gt-bar' style='width: 110px;'>9</div></div><div class='bar-container'><div class='bar early-bar' style='width: 0px;'> </div><div class='bar late-bar' style='width: 10px;'>1</div><div class='bar gt-bar' style='width: 90px;'>8</div></div><div class='bar-container'><div class='bar early-bar' style='width: 0px;'> </div><div class='bar late-bar' style='width: 20px;'>2</div><div class='bar gt-bar' style='width: 60px;'>4</div></div><div class='bar-container'><div class='bar early-bar' style='width: 0px;'> </div><div class='bar late-bar' style='width: 40px;'>4</div><div class='bar gt-bar' style='width: 120px;'>8</div></div></td>
+                <td class=''>5/5</td>
+                <td>72.48%</td>
+                <td>100.00%</td>
+                <td>2.8</td>
+                <td>0.0</td>
+            </tr>
+            
+            <tr>
+                
+                <td><a href='CPFA_30kph_IDIADA_Report.html' target='_blank'>CPFA_30kph</a></td>
+                <td>1/5</td>
+                <td><div class='bar-container'><div class='bar early-bar' style='width: 0px;'> </div><div class='bar late-bar' style='width: 50px;'>5</div><div class='bar gt-bar' style='width: 90px;'>4</div></div></td>
+                <td class=''>1/1</td>
+                <td>44.44%</td>
+                <td>100.00%</td>
+                <td>5.0</td>
+                <td>0.0</td>
+            </tr>
+            
+            <tr>
+                
+                <td><a href='CPFA_60kph_IDIADA_Report.html' target='_blank'>CPFA_60kph</a></td>
+                <td>4/5</td>
+                <td><div class='bar-container'><div class='bar early-bar' style='width: 0px;'> </div><div class='bar late-bar' style='width: 0px;'> </div><div class='bar gt-bar' style='width: 90px;'>9</div></div><div class='bar-container'><div class='bar early-bar' style='width: 0px;'> </div><div class='bar late-bar' style='width: 20px;'>2</div><div class='bar gt-bar' style='width: 90px;'>7</div></div><div class='bar-container'><div class='bar early-bar' style='width: 0px;'> </div><div class='bar late-bar' style='width: 10px;'>1</div><div class='bar gt-bar' style='width: 110px;'>10</div></div><div class='bar-container'><div class='bar early-bar' style='width: 0px;'> </div><div class='bar late-bar' style='width: 0px;'> </div><div class='bar gt-bar' style='width: 60px;'>6</div></div></td>
+                <td class=''>4/4</td>
+                <td>92.17%</td>
+                <td>100.00%</td>
+                <td>0.75</td>
+                <td>0.0</td>
+            </tr>
+            
+            <tr>
+                
+                <td><a href='CPNA25_30kph_IDIADA_Report.html' target='_blank'>CPNA25_30kph</a></td>
+                <td>5/5</td>
+                <td><div class='bar-container'><div class='bar early-bar' style='width: 0px;'> </div><div class='bar late-bar' style='width: 30px;'>3</div><div class='bar gt-bar' style='width: 110px;'>8</div></div><div class='bar-container'><div class='bar early-bar' style='width: 0px;'> </div><div class='bar late-bar' style='width: 10px;'>1</div><div class='bar gt-bar' style='width: 50px;'>4</div></div><div class='bar-container'><div class='bar early-bar' style='width: 0px;'> </div><div class='bar late-bar' style='width: 10px;'>1</div><div class='bar gt-bar' style='width: 50px;'>4</div></div><div class='bar-container'><div class='bar early-bar' style='width: 0px;'> </div><div class='bar late-bar' style='width: 20px;'>2</div><div class='bar gt-bar' style='width: 110px;'>9</div></div><div class='bar-container'><div class='bar early-bar' style='width: 0px;'> </div><div class='bar late-bar' style='width: 40px;'>4</div><div class='bar gt-bar' style='width: 120px;'>8</div></div></td>
+                <td class=''>5/5</td>
+                <td>76.24%</td>
+                <td>100.00%</td>
+                <td>2.2</td>
+                <td>0.0</td>
+            </tr>
+            
+            <tr>
+                
+                <td><a href='CPNA25_60kph_IDIADA_Report.html' target='_blank'>CPNA25_60kph</a></td>
+                <td>5/5</td>
+                <td><div class='bar-container'><div class='bar early-bar' style='width: 0px;'> </div><div class='bar late-bar' style='width: 0px;'> </div><div class='bar gt-bar' style='width: 70px;'>7</div></div><div class='bar-container'><div class='bar early-bar' style='width: 10px;'>1</div><div class='bar late-bar' style='width: 0px;'> </div><div class='bar gt-bar' style='width: 50px;'>5</div></div><div class='bar-container'><div class='bar early-bar' style='width: 0px;'> </div><div class='bar late-bar' style='width: 40px;'>4</div><div class='bar gt-bar' style='width: 70px;'>3</div></div><div class='bar-container'><div class='bar early-bar' style='width: 0px;'> </div><div class='bar late-bar' style='width: 10px;'>1</div><div class='bar gt-bar' style='width: 30px;'>2</div></div><div class='bar-container'><div class='bar early-bar' style='width: 0px;'> </div><div class='bar late-bar' style='width: 40px;'>4</div><div class='bar gt-bar' style='width: 70px;'>3</div></div></td>
+                <td class=''>5/5</td>
+                <td>70.48%</td>
+                <td>96.67%</td>
+                <td>1.8</td>
+                <td>0.2</td>
+            </tr>
+            
+            <tr>
+                
+                <td><a href='CPNA75_30kph_IDIADA_Report.html' target='_blank'>CPNA75_30kph</a></td>
+                <td>5/5</td>
+                <td><div class='bar-container'><div class='bar early-bar' style='width: 0px;'> </div><div class='bar late-bar' style='width: 40px;'>4</div><div class='bar gt-bar' style='width: 90px;'>5</div></div><div class='bar-container'><div class='bar early-bar' style='width: 0px;'> </div><div class='bar late-bar' style='width: 40px;'>4</div><div class='bar gt-bar' style='width: 60px;'>2</div></div><div class='bar-container'><div class='bar early-bar' style='width: 0px;'> </div><div class='bar late-bar' style='width: 40px;'>4</div><div class='bar gt-bar' style='width: 60px;'>2</div></div><div class='bar-container'><div class='bar early-bar' style='width: 0px;'> </div><div class='bar late-bar' style='width: 40px;'>4</div><div class='bar gt-bar' style='width: 110px;'>7</div></div><div class='bar-container'><div class='bar early-bar' style='width: 0px;'> </div><div class='bar late-bar' style='width: 30px;'>3</div><div class='bar gt-bar' style='width: 80px;'>5</div></div></td>
+                <td class=''>5/5</td>
+                <td>49.67%</td>
+                <td>100.00%</td>
+                <td>3.8</td>
+                <td>0.0</td>
+            </tr>
+            
+            <tr>
+                
+                <td><a href='CPNA75_60kph_IDIADA_Report.html' target='_blank'>CPNA75_60kph</a></td>
+                <td>5/5</td>
+                <td><div class='bar-container'><div class='bar early-bar' style='width: 0px;'> </div><div class='bar late-bar' style='width: 0px;'> </div><div class='bar gt-bar' style='width: 80px;'>8</div></div><div class='bar-container'><div class='bar early-bar' style='width: 10px;'>1</div><div class='bar late-bar' style='width: 0px;'> </div><div class='bar gt-bar' style='width: 100px;'>10</div></div><div class='bar-container'><div class='bar early-bar' style='width: 0px;'> </div><div class='bar late-bar' style='width: 0px;'> </div><div class='bar gt-bar' style='width: 120px;'>12</div></div><div class='bar-container'><div class='bar early-bar' style='width: 0px;'> </div><div class='bar late-bar' style='width: 10px;'>1</div><div class='bar gt-bar' style='width: 120px;'>11</div></div><div class='bar-container'><div class='bar early-bar' style='width: 0px;'> </div><div class='bar late-bar' style='width: 0px;'> </div><div class='bar gt-bar' style='width: 110px;'>11</div></div></td>
+                <td class=''>5/5</td>
+                <td>98.33%</td>
+                <td>98.18%</td>
+                <td>0.2</td>
+                <td>0.2</td>
+            </tr>
+            
+            <tr>
+                
+                <td><a href='CPNC_20kph_IDIADA_Report.html' target='_blank'>CPNC_20kph</a></td>
+                <td>5/5</td>
+                <td><div class='bar-container'><div class='bar early-bar' style='width: 0px;'> </div><div class='bar late-bar' style='width: 50px;'>5</div><div class='bar gt-bar' style='width: 120px;'>7</div></div><div class='bar-container'><div class='bar early-bar' style='width: 0px;'> </div><div class='bar late-bar' style='width: 40px;'>4</div><div class='bar gt-bar' style='width: 110px;'>7</div></div><div class='bar-container'><div class='bar early-bar' style='width: 0px;'> </div><div class='bar late-bar' style='width: 40px;'>4</div><div class='bar gt-bar' style='width: 110px;'>7</div></div><div class='bar-container'><div class='bar early-bar' style='width: 0px;'> </div><div class='bar late-bar' style='width: 40px;'>4</div><div class='bar gt-bar' style='width: 110px;'>7</div></div><div class='bar-container'><div class='bar early-bar' style='width: 0px;'> </div><div class='bar late-bar' style='width: 50px;'>5</div><div class='bar gt-bar' style='width: 110px;'>6</div></div></td>
+                <td class=''>5/5</td>
+                <td>60.76%</td>
+                <td>100.00%</td>
+                <td>4.4</td>
+                <td>0.0</td>
+            </tr>
+            
+            <tr>
+                
+                <td><a href='CPNC_40kph_IDIADA_Report.html' target='_blank'>CPNC_40kph</a></td>
+                <td>5/5</td>
+                <td><div class='bar-container'><div class='bar early-bar' style='width: 0px;'> </div><div class='bar late-bar' style='width: 30px;'>3</div><div class='bar gt-bar' style='width: 50px;'>2</div></div><div class='bar-container'><div class='bar early-bar' style='width: 0px;'> </div><div class='bar late-bar' style='width: 30px;'>3</div><div class='bar gt-bar' style='width: 60px;'>3</div></div><div class='bar-container'><div class='bar early-bar' style='width: 0px;'> </div><div class='bar late-bar' style='width: 30px;'>3</div><div class='bar gt-bar' style='width: 70px;'>4</div></div><div class='bar-container'><div class='bar early-bar' style='width: 0px;'> </div><div class='bar late-bar' style='width: 50px;'>5</div><div class='bar gt-bar' style='width: 80px;'>3</div></div><div class='bar-container'><div class='bar early-bar' style='width: 0px;'> </div><div class='bar late-bar' style='width: 30px;'>3</div><div class='bar gt-bar' style='width: 60px;'>3</div></div></td>
+                <td class=''>5/5</td>
+                <td>46.93%</td>
+                <td>100.00%</td>
+                <td>3.4</td>
+                <td>0.0</td>
+            </tr>
+            
+            <tr>
+                
+                <td><a href='CPNC_60kph_IDIADA_Report.html' target='_blank'>CPNC_60kph</a></td>
+                <td>5/5</td>
+                <td><div class='bar-container'><div class='bar early-bar' style='width: 0px;'> </div><div class='bar late-bar' style='width: 0px;'> </div><div class='bar gt-bar' style='width: 0px;'>0</div></div><div class='bar-container'><div class='bar early-bar' style='width: 0px;'> </div><div class='bar late-bar' style='width: 60px;'>6</div><div class='bar gt-bar' style='width: 100px;'>4</div></div><div class='bar-container'><div class='bar early-bar' style='width: 0px;'> </div><div class='bar late-bar' style='width: 0px;'> </div><div class='bar gt-bar' style='width: 0px;'>0</div></div><div class='bar-container'><div class='bar early-bar' style='width: 0px;'> </div><div class='bar late-bar' style='width: 70px;'>7</div><div class='bar gt-bar' style='width: 100px;'>3</div></div><div class='bar-container'><div class='bar early-bar' style='width: 0px;'> </div><div class='bar late-bar' style='width: 70px;'>7</div><div class='bar gt-bar' style='width: 100px;'>3</div></div></td>
+                <td class='highlight'>3/5</td>
+                <td>33.33%</td>
+                <td>100.00%</td>
+                <td>6.67</td>
+                <td>0.0</td>
+            </tr>
+            </table></body></html>
